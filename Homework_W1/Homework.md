@@ -16,13 +16,13 @@ How many python packages/modules are installed?
 3
 
 #### Code:
-Run the command: pip list inside the container
+Run the command: "pip list" inside the container
 
 Package    Version
----------- -------
-pip        22.0.4
-setuptools 58.1.0
-wheel      0.38.4
+- pip        22.0.4
+* setuptools 58.1.0
++ wheel      0.38.4
+
 
 
 ### Question 3: 

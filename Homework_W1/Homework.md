@@ -3,19 +3,19 @@
 ### Question 1.
 Which tag has the following text?
 
-* A:
+A:
 iidfile string
 
-* Code:
+Code:
 docker build --help
 
 ### Question 2:  
 How many python packages/modules are installed?
 
-* A:
+A:
 3
 
-* Code:
+Code:
 Run the command: pip list inside the container
 
 Package    Version
@@ -28,10 +28,10 @@ wheel      0.38.4
 ### Question 3: 
 How many taxi trips were totally made on January 15?
 
-* A:
+A:
 20530
 
-* Code: 
+Code: 
 select count(*) from green_taxi_data ytd
 where date_trunc('day',lpep_pickup_datetime) = '2019-01-15' and date_trunc('day',lpep_dropoff_datetime) = '2019-01-15';
 
@@ -40,10 +40,10 @@ where date_trunc('day',lpep_pickup_datetime) = '2019-01-15' and date_trunc('day'
 ### Question 4: 
 Which was the day with the largest trip distance?
 
-* A:
+A:
 2019-01-15
 
-* Code:
+Code:
 select  lpep_pickup_datetime from green_taxi_data ytd where trip_distance = (select max(trip_distance) from green_taxi_data);
 
 
@@ -62,10 +62,10 @@ group by passenger_count;
 ### Question 6: 
 For the passengers picked up in the Astoria Zone which was the drop up zone that had the largest tip?
 
-* A:
+A:
 Long Island City/Queens Plaza
 
-* Code:
+Code:
 select gtd.lpep_pickup_datetime, tip_amount, pickup_location."Zone", dropoff_location."Zone"  from green_taxi_data gtd
 left join zones pickup_location on gtd."PULocationID" = pickup_location."LocationID"
 left join zones dropoff_location on gtd."DOLocationID" = dropoff_location."LocationID"

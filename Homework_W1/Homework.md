@@ -28,7 +28,7 @@ wheel      0.38.4
 ### Question 3: 
 How many taxi trips were totally made on January 15?
 
-A:
+#### A:
 20530
 
 Code: 

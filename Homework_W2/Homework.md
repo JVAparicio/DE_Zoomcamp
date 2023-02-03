@@ -78,6 +78,10 @@ Start the agent:
 prefect agent start -q default
 ```
 
+Check the results on GCP:
+
+![image](https://user-images.githubusercontent.com/20862376/216673521-442c085a-8c54-4869-9bfe-8510db4e8beb.png)
+
 
 
 

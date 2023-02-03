@@ -10,7 +10,7 @@ A: 447,770
 
 Code:
 
-Update the `etl_web_to_gcs.py` with:
+Update the `etl_web_to_gcs_hw.py` with:
 ```
 if __name__ == '__main__':
 color = 'green'
@@ -24,34 +24,64 @@ year = 2020
 
 ## Question 2. Scheduling with Cron
 
-Cron is a common scheduling specification for workflows. 
+Q: Using the flow in `etl_web_to_gcs_hw.py`, create a deployment to run on the first of every month at 5am UTC. What’s the cron schedule for that?
 
-Using the flow in `etl_web_to_gcs.py`, create a deployment to run on the first of every month at 5am UTC. What’s the cron schedule for that?
+A: `* * 5 1 0`
 
-- `0 5 1 * *`
-- `0 0 5 1 *`
-- `5 * 1 0 *`
-- `* * 5 1 0`
+Code:
+
+```
+prefect deployment build ./etl_web_to_gcs_hw.py:etl_parent_flow -n "etl3" --cron "0 5 1 * *" -a
+```
+
+![image](https://user-images.githubusercontent.com/20862376/216661350-56831c5e-91db-4662-a92f-d7fc4aec2db8.png)
 
 
 ## Question 3. Loading data to BigQuery 
 
-Using `etl_gcs_to_bq.py` as a starting point, modify the script for extracting data from GCS and loading it into BigQuery. This new script should not fill or remove rows with missing values. (The script is really just doing the E and L parts of ETL).
+Q:How many rows did your flow code process?
 
-The main flow should print the total number of rows processed by the script. Set the flow decorator to log the print statement.
+A: 14,851,920
 
-Parametrize the entrypoint flow to accept a list of months, a year, and a taxi color. 
+Code:
 
-Make any other necessary changes to the code for it to function as required.
+Update the 'etl_gcs_to_bq_hw.py' to be arametrized:
 
-Create a deployment for this flow to run in a local subprocess with local flow code storage (the defaults).
+```
+@flow()
+def elt_parent_flow(months: list[int] = [1,2], year: int = 2021, color: str = 'yellow'):
 
-Make sure you have the parquet data files for Yellow taxi data for Feb. 2019 and March 2019 loaded in GCS. Run your deployment to append this data to your BiqQuery table. How many rows did your flow code process?
+    for month in months:
+        etl_gcs_to_bq(year, month, color)
+```
 
-- 14,851,920
-- 12,282,990
-- 27,235,753
-- 11,338,483
+Build the deployment:
+
+```
+prefect deployment build ./etl_gcs_to_bq_hw.py:elt_parent_flow -n "Parameterized ELT"
+```
+
+Apply the deployment:
+
+```
+prefect deployment apply elt_parent_flow-deployment.yaml 
+```
+
+Run the the deployment with the parameters:
+
+```
+prefect deployment run  "elt-parent-flow/Parameterized ELT" -p "months=[2,3]" -p "year=2019" -p "color=yellow"
+```
+
+Start the agent:
+```
+prefect agent start -q default
+```
+
+
+
+
+
 
 
 

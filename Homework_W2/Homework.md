@@ -26,7 +26,7 @@ year = 2020
 
 Q: Using the flow in `etl_web_to_gcs_hw.py`, create a deployment to run on the first of every month at 5am UTC. What’s the cron schedule for that?
 
-A: `* * 5 1 0`
+A: `0 5 1 * *`
 
 Code:
 

@@ -87,8 +87,8 @@ Check the results on GCP:
 ## Question 4. Github Storage Block
 
 
-
 Q: How many rows were processed by the script?
+
 A: 88,605
 
 Code:
@@ -96,18 +96,18 @@ Code:
 Create a github block on the Prefect UI
 
 Create a deploy using the github block 
-´´´
+```
 prefect deployment build ./etl_web_to_gcs_hw.py:etl_parent_flow \
   -n test_github \
   -sb github/github-zoom \
   -o prefect-github-deployment \
   --apply
-´´´
+```
 
 Run the deployment with the parameters needed:
-´´´
+```
 prefect deployment run etl-parent-flow/test_github -p "months=[11]" -p "year=2020" -p "color=green"
-´´´
+```
 
 
 

@@ -24,8 +24,8 @@ def fetch(dataset_url: str) -> pd.DataFrame:
 @task(log_prints=True)
 def clean(df: pd.DataFrame) -> pd.DataFrame:
     """Fix dtype issues"""
-    df['tpep_pickup_datetime'] = pd.to_datetime(df['tpep_pickup_datetime'])
-    df['tpep_dropoff_datetime'] = pd.to_datetime(df['tpep_dropoff_datetime'])
+    df['lpep_pickup_datetime'] = pd.to_datetime(df['lpep_pickup_datetime'])
+    df['lpep_dropoff_datetime'] = pd.to_datetime(df['lpep_dropoff_datetime'])
     #df['year'] = df['tpep_pickup_datetime'].dt.year
     #df['month'] = df['tpep_pickup_datetime'].dt.month
     #df['day'] = df['tpep_pickup_datetime'].dt.day

@@ -84,25 +84,30 @@ Check the results on GCP:
 
 
 
-
-
-
-
-
 ## Question 4. Github Storage Block
 
-Using the `web_to_gcs` script from the videos as a guide, you want to store your flow code in a GitHub repository for collaboration with your team. Prefect can look in the GitHub repo to find your flow code and read it. Create a GitHub storage block from the UI or in Python code and use that in your Deployment instead of storing your flow code locally or baking your flow code into a Docker image. 
 
-Note that you will have to push your code to GitHub, Prefect will not push it for you.
 
-Run your deployment in a local subprocess (the default if you don’t specify an infrastructure). Use the Green taxi data for the month of November 2020.
+Q: How many rows were processed by the script?
+A: 88,605
 
-How many rows were processed by the script?
+Code:
 
-- 88,019
-- 192,297
-- 88,605
-- 190,225
+Create a github block on the Prefect UI
+
+Create a deploy using the github block 
+´´´
+prefect deployment build ./etl_web_to_gcs_hw.py:etl_parent_flow \
+  -n test_github \
+  -sb github/github-zoom \
+  -o prefect-github-deployment \
+  --apply
+´´´
+
+Run the deployment with the parameters needed:
+´´´
+prefect deployment run etl-parent-flow/test_github -p "months=[11]" -p "year=2020" -p "color=green"
+´´´
 
 
 

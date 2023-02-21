@@ -32,7 +32,7 @@ select
     {{ get_payment_type_description('payment_type') }} as payment_type_description,
     cast(congestion_surcharge as numeric) as congestion_surcharge
 
-from {{ source('staging', 'yellow_tripdata') }}
+from {{ source('staging', 'yellow_trip_data') }}
 where vendorid is not null
 
 -- dbt build --m <model.sql> --var 'is_test_run: false'

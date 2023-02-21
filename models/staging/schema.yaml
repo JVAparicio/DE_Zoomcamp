@@ -7,3 +7,4 @@ sources:
     schema: ds_zoomcamp
     tables:
       - name: green_tripdata
+      - name: yellow_tripdata

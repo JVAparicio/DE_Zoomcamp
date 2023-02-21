@@ -36,7 +36,7 @@ from {{ source('staging', 'yellow_trip_data') }}
 where vendorid is not null
 
 -- dbt build --m <model.sql> --var 'is_test_run: false'
-{% if var('is_test_run', default=false) %}
+{% if var('is_test_run', default=True) %}
 
   limit 100
 

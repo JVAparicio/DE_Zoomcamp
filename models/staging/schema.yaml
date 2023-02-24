@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: staging
+    description: desc
+    database: dtc-de-course-375312
+    schema: ds_zoomcamp
+    tables:
+      - name: green_tripdata
+      - name: yellow_trip_data
